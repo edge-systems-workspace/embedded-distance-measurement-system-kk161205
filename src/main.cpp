@@ -38,4 +38,13 @@ void setup() {
 }
 
 void loop() {
+
+    /* Ensure clean LOW pulse */
+    digitalWrite(TRIG_PIN, LOW);
+    delayMicroseconds(2);
+
+    /* Send 10µs trigger pulse */
+    digitalWrite(TRIG_PIN, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(TRIG_PIN, LOW);
 }
