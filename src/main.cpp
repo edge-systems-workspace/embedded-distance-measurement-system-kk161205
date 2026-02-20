@@ -14,6 +14,7 @@
    Global Definitions
    =========================== */
 unsigned long duration = 0;
+float distance = 0.0;
 
 /** @brief TRIG pin connected to HC-SR04 */
 const uint8_t TRIG_PIN = 9;
@@ -40,17 +41,24 @@ void setup() {
 
 void loop() {
 
-    /* Ensure clean LOW pulse */
+    Serial.println("---------------------------------");
+
     digitalWrite(TRIG_PIN, LOW);
     delayMicroseconds(2);
 
-    /* Send 10µs trigger pulse */
     digitalWrite(TRIG_PIN, HIGH);
     delayMicroseconds(10);
     digitalWrite(TRIG_PIN, LOW);
 
     duration = pulseIn(ECHO_PIN, HIGH);
 
-    Serial.print("Duration: ");
-    Serial.println(duration);
+    distance = (duration * 0.0343) / 2.0;
+
+    Serial.print("Distance: ");
+    Serial.print(distance);
+    Serial.println(" cm");
+
+    Serial.println("---------------------------------\n");
+
+    delay(500);
 }
