@@ -13,6 +13,7 @@
 /* ===========================
    Global Definitions
    =========================== */
+unsigned long duration = 0;
 
 /** @brief TRIG pin connected to HC-SR04 */
 const uint8_t TRIG_PIN = 9;
@@ -47,4 +48,9 @@ void loop() {
     digitalWrite(TRIG_PIN, HIGH);
     delayMicroseconds(10);
     digitalWrite(TRIG_PIN, LOW);
+
+    duration = pulseIn(ECHO_PIN, HIGH);
+
+    Serial.print("Duration: ");
+    Serial.println(duration);
 }
